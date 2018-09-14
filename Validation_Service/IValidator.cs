@@ -8,6 +8,6 @@ namespace Validation_Service
 {
     public interface IValidator
     {
-        bool CheckObject(object obj);
+        bool TryValidateObject(object obj);
     }
 }

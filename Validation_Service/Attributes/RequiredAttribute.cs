@@ -10,10 +10,10 @@ namespace Validation_Service.Attributes
     /// Validation attribute to indicate that a property field or parameter is required.
     /// </summary>
     [AttributeUsage(AttributeTargets.Property | AttributeTargets.Field | AttributeTargets.Parameter, AllowMultiple = false)]
-    class RequiredAttribute : BaseAttribute
+    public class RequiredAttribute : BaseAttribute
     {
         /// <summary>
-        /// Gets or sets a flag indicating whether the attribute
+        /// Gets or sets a flag indicating whether the attribute should allow empty strings.
         /// </summary>
         public bool AllowEmptyString { get; set; }
 

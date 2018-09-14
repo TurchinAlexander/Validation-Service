@@ -8,8 +8,9 @@ namespace Validation_Service
 {
     public class Validator : IValidator
     {
-        public bool CheckObject(object obj)
+        public bool TryValidateObject(object obj)
         {
+           
             return false;
         }
     }
