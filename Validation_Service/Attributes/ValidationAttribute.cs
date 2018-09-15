@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Validation_Service
 {
-    public abstract class BaseAttribute : Attribute
+    public abstract class ValidationAttribute : Attribute
     {
         //private string _errorMessage;
 

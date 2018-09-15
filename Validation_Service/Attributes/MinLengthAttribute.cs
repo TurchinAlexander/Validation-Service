@@ -10,8 +10,8 @@ namespace Validation_Service.Attributes
     /// <summary>
     /// Specifies the minimum length of array|string data allowed in a property.
     /// </summary>
-    [AttributeUsage(AttributeTargets.Property | AttributeTargets.Field | AttributeTargets.Parameter, AllowMultiple = false)]
-    public class MinLengthAttribute : BaseAttribute
+    [AttributeUsage(AttributeTargets.Property, AllowMultiple = false)]
+    public class MinLengthAttribute : ValidationAttribute
     {
         /// <summary>
         /// Gets the minimum allowable length of the array or string data.
@@ -21,14 +21,14 @@ namespace Validation_Service.Attributes
         /// <summary>
         /// Initialize a new instance of the
         /// </summary>
-        /// <param name="length"></param>
+        /// <param name="length">Set minimum length of value</param>
         public MinLengthAttribute(int length)
         {
             Length = length;
         }
 
         /// <summary>
-        /// Determines whether a specified object is valid. (Overrides <see cref="BaseAttribute.IsValid(object)"/>)
+        /// Determines whether a specified object is valid. (Overrides <see cref="ValidationAttribute.IsValid(object)"/>)
         /// </summary>
         /// <remarks>
         /// This method return <c>true</c> if the <paramref name="value"/> is null.

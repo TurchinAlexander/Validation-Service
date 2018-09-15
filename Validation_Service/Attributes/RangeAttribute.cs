@@ -9,8 +9,8 @@ namespace Validation_Service.Attributes
     /// <summary>
     /// Used for specifying a range constraint.
     /// </summary>
-    [AttributeUsage(AttributeTargets.Property | AttributeTargets.Field | AttributeTargets.Parameter, AllowMultiple = false)]
-    public class RangeAttribute : BaseAttribute
+    [AttributeUsage(AttributeTargets.Property, AllowMultiple = false)]
+    public class RangeAttribute : ValidationAttribute
     {
         /// <summary>
         /// Gets the minimum value for the range.

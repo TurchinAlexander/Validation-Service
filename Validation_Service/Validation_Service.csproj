@@ -43,7 +43,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Attributes\BaseAttribute.cs" />
+    <Compile Include="Attributes\ValidationAttribute.cs" />
     <Compile Include="Attributes\MinLengthAttribute.cs" />
     <Compile Include="Attributes\RangeAttribute.cs" />
     <Compile Include="Attributes\RequiredAttribute.cs" />

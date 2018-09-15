@@ -9,8 +9,8 @@ namespace Validation_Service.Attributes
     /// <summary>
     /// Validation attribute to indicate that a property field or parameter is required.
     /// </summary>
-    [AttributeUsage(AttributeTargets.Property | AttributeTargets.Field | AttributeTargets.Parameter, AllowMultiple = false)]
-    public class RequiredAttribute : BaseAttribute
+    [AttributeUsage(AttributeTargets.Property, AllowMultiple = false)]
+    public class RequiredAttribute : ValidationAttribute
     {
         /// <summary>
         /// Gets or sets a flag indicating whether the attribute should allow empty strings.
@@ -18,7 +18,7 @@ namespace Validation_Service.Attributes
         public bool AllowEmptyString { get; set; }
 
         /// <summary>
-        /// Override of <see cref="BaseAttribute.IsValid(object)"/>
+        /// Override of <see cref="ValidationAttribute.IsValid(object)"/>
         /// </summary>
         /// <param name="value">The value to test.</param>
         /// <returns><c>false</c> if the value is null or an empty string. If <see cref="RequiredAttribute.AllowEmptyString"/>
