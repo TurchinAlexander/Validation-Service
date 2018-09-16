@@ -53,6 +53,8 @@
     <Compile Include="Result\ValidationReport.cs" />
     <Compile Include="Result\FullReport.cs" />
     <Compile Include="Result\SingleReport.cs" />
+    <Compile Include="Service\BaseValidationService.cs" />
+    <Compile Include="Service\ValidationService.cs" />
     <Compile Include="Validator.cs" />
   </ItemGroup>
   <ItemGroup>

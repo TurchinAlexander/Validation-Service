@@ -9,7 +9,7 @@ namespace Validation_Service.Result
     /// <summary>
     /// Class to report results of a all validation acts.
     /// </summary>
-    class FullReport : ValidationReport
+    public class FullReport : ValidationReport
     {
         /// <summary>
         /// Represents details of validations.

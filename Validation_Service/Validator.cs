@@ -7,7 +7,7 @@ using System.Reflection;
 
 namespace Validation_Service
 {
-    public class Validator : IValidator
+    public class Validator
     {
         public bool Validate(object obj)
         {
