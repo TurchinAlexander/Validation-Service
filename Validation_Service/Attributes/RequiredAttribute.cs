@@ -1,8 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using Validation_Service.Result;
 
 namespace Validation_Service.Attributes
 {
@@ -15,7 +12,13 @@ namespace Validation_Service.Attributes
         /// <summary>
         /// Gets or sets a flag indicating whether the attribute should allow empty strings.
         /// </summary>
-        public bool AllowEmptyString { get; set; }
+        public bool AllowEmptyString { get; set; } = false;
+
+        /// <summary>
+        /// Gets or sets a message that will be returned by <see cref="RequiredAttribute.Validate(object)"/>
+        /// in <see cref="SingleReport.Details"/>
+        /// </summary>
+        public string ErrorMessage { get; set; } = "The value is not determined!";
 
         /// <summary>
         /// Override of <see cref="ValidationAttribute.Validate(object)"/>
@@ -23,21 +26,25 @@ namespace Validation_Service.Attributes
         /// <param name="value">The value to test.</param>
         /// <returns><c>false</c> if the value is null or an empty string. If <see cref="RequiredAttribute.AllowEmptyString"/>
         /// then <c>false</c> is returned only if <paramref name="value"/> is null.</returns>
-        public override bool Validate(object value)
+        public override SingleReport Validate(object value)
         {
             if (value == null)
             {
-                return false;
+                return new SingleReport(isValid: true);
             }
 
             // Only check string length if empty string are not allowed.
-            var stringValue = value as string;
-            if (stringValue != null && !AllowEmptyString)
+            
+            if (!AllowEmptyString)
             {
-                return stringValue.Trim().Length != 0;
+                var stringValue = value as string;
+                if(stringValue != null && stringValue.Trim().Length != 0)
+                {
+                    return new SingleReport(isValid: false, this.ErrorMessage);
+                }
             }
 
-            return true;
+            return new SingleReport(isValid: true);
         }
     }
 }

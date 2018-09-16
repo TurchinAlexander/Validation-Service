@@ -1,9 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Globalization;
+using Validation_Service.Result;
 
 namespace Validation_Service.Attributes
 {
@@ -17,6 +14,12 @@ namespace Validation_Service.Attributes
         /// Gets the minimum allowable length of the array or string data.
         /// </summary>
         public int Length { get; private set; }
+
+        /// <summary>
+        /// Gets or sets a message that will be returned by <see cref="MinLengthAttribute.Validate(object)"/>
+        /// in <see cref="SingleReport.Details"/>
+        /// </summary>
+        public string ErrorMessage { get; set; } = "The length of value is below the minumum!";
 
         /// <summary>
         /// Initialize a new instance of the
@@ -37,32 +40,31 @@ namespace Validation_Service.Attributes
         /// <param name="value">The object to validate.</param>
         /// <returns><c>true</c> if the value is null or greater than or equal to the specified minimum length, otherwise <c>false</c></returns>
         /// <exception cref="InvalidOperationException">Length is less than zero.</exception>
-        public override bool Validate(object value)
+        public override SingleReport Validate(object value)
         {
-            // Check the length for the legality.
             EnsureLegalLength();
 
-            var length = 0;
-            // Automatically pass if the value is null. RequiredAttribute should be used to assert the value is not null.
+            bool isValid = true;
+
             if(value == null)
             {
-                return true;
+                return new SingleReport(isValid: false, this.ErrorMessage);
             }
             else
             {
                 var str = value as string;
                 if (str != null)
                 {
-                    length = str.Length;
+                    isValid = (str.Length >= this.Length);
                 }
                 else
                 {
-                    // We expect a cast exception if a non-{string|array} property was passed in.
-                    length = ((Array)value).Length;
+                    isValid = false;
                 }
             }
 
-            return length >= Length;
+            return (isValid) ? new SingleReport(isValid: true)
+                : new SingleReport(isValid: false, this.ErrorMessage);
         }
 
         /// <summary>
@@ -70,7 +72,7 @@ namespace Validation_Service.Attributes
         /// </summary>
         private void EnsureLegalLength()
         {
-            if(Length < 0)
+            if (Length < 0)
             {
                 throw new InvalidOperationException(String.Format(CultureInfo.CurrentCulture, "MinLengthAttribute_InvalidLength"));
             }

@@ -1,8 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using Validation_Service.Result;
 
 namespace Validation_Service.Attributes
 {
@@ -22,7 +19,11 @@ namespace Validation_Service.Attributes
         /// </summary>
         public int Maximum { get; private set; }
 
-        //public int Type { get; private set; }
+        /// <summary>
+        /// Gets or sets a message that will be returned by <see cref="RangeAttribute.Validate(object)"/>
+        /// in <see cref="SingleReport.Details"/>
+        /// </summary>
+        public string ErrorMessage { get; set; } = "The value doen't located between min and max ones!";
 
         /// <summary>
         /// Constructor that takes integer minimum and maximum values.
@@ -40,16 +41,19 @@ namespace Validation_Service.Attributes
         /// </summary>
         /// <param name="value">The object to validate.</param>
         /// <returns><c>true</c> means the <paramref name="value"/> is valid.</returns>
-        public override bool Validate(object value)
+        public override SingleReport Validate(object value)
         {
             // Automatically pass if the value is null or empty. RequiredAttribute should be used to assert a value is not empty.
             if (value == null)
             {
-                return true;
+                return new SingleReport(isValid: true);
             }
 
-            int? tmp = value as int?;
-            return ((tmp != null) && (tmp >= Minimum && tmp <= Maximum));
+            int tmp = (int)value;
+            bool isValid = (tmp >= Minimum && tmp <= Maximum);
+
+            return (isValid) ? new SingleReport(isValid: true)
+                : new SingleReport(isValid: false, this.ErrorMessage);
         }
     }
 }
