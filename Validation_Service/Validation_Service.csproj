@@ -50,6 +50,9 @@
     <Compile Include="IValidator.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Result\ValidationReport.cs" />
+    <Compile Include="Result\FullReport.cs" />
+    <Compile Include="Result\SingleReport.cs" />
     <Compile Include="Validator.cs" />
   </ItemGroup>
   <ItemGroup>

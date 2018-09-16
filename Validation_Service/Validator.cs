@@ -16,7 +16,7 @@ namespace Validation_Service
                 object value = prop.GetValue(obj);
                 foreach(ValidationAttribute attr in prop.GetCustomAttributes<ValidationAttribute>())
                 {
-                    bool result = attr.IsValid(value);
+                    bool result = attr.Validate(value);
                     Console.WriteLine($"{ attr.ToString() } result is { result }");
                 }
             }

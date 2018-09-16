@@ -15,7 +15,7 @@ namespace UnitTestProject
 
             // act
             var attr = new RangeAttribute(1, 7);
-            var result = attr.IsValid(value);
+            var result = attr.Validate(value);
 
             // assert
             Assert.AreEqual(true, result);
@@ -29,7 +29,7 @@ namespace UnitTestProject
 
             // act
             var attr = new RangeAttribute(1, 7);
-            var result = attr.IsValid(value);
+            var result = attr.Validate(value);
 
             // assert
             Assert.AreEqual(true, result);
@@ -43,7 +43,7 @@ namespace UnitTestProject
 
             // act
             var attr = new RangeAttribute(1, 7);
-            var result = attr.IsValid(value);
+            var result = attr.Validate(value);
 
             // assert
             Assert.AreEqual(false, result);
@@ -57,7 +57,7 @@ namespace UnitTestProject
 
             // act
             var attr = new RangeAttribute(1, 7);
-            var result = attr.IsValid(value);
+            var result = attr.Validate(value);
 
             // assert
             Assert.AreEqual(true, result);
@@ -71,7 +71,7 @@ namespace UnitTestProject
 
             // act
             var attr = new RangeAttribute(2, 1);
-            var result = attr.IsValid(value);
+            var result = attr.Validate(value);
 
             // assert
             Assert.AreEqual(false, result);

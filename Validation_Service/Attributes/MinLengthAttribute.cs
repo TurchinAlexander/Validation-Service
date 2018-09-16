@@ -28,7 +28,7 @@ namespace Validation_Service.Attributes
         }
 
         /// <summary>
-        /// Determines whether a specified object is valid. (Overrides <see cref="ValidationAttribute.IsValid(object)"/>)
+        /// Determines whether a specified object is valid. (Overrides <see cref="ValidationAttribute.Validate(object)"/>)
         /// </summary>
         /// <remarks>
         /// This method return <c>true</c> if the <paramref name="value"/> is null.
@@ -37,7 +37,7 @@ namespace Validation_Service.Attributes
         /// <param name="value">The object to validate.</param>
         /// <returns><c>true</c> if the value is null or greater than or equal to the specified minimum length, otherwise <c>false</c></returns>
         /// <exception cref="InvalidOperationException">Length is less than zero.</exception>
-        public override bool IsValid(object value)
+        public override bool Validate(object value)
         {
             // Check the length for the legality.
             EnsureLegalLength();

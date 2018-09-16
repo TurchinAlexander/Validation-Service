@@ -40,7 +40,7 @@ namespace Validation_Service.Attributes
         /// </summary>
         /// <param name="value">The object to validate.</param>
         /// <returns><c>true</c> means the <paramref name="value"/> is valid.</returns>
-        public override bool IsValid(object value)
+        public override bool Validate(object value)
         {
             // Automatically pass if the value is null or empty. RequiredAttribute should be used to assert a value is not empty.
             if (value == null)

@@ -10,6 +10,6 @@ namespace Validation_Service
     {
         //private string _errorMessage;
 
-        public abstract bool IsValid(object value);
+        public abstract bool Validate(object value);
     }
 }

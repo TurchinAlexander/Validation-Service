@@ -18,12 +18,12 @@ namespace Validation_Service.Attributes
         public bool AllowEmptyString { get; set; }
 
         /// <summary>
-        /// Override of <see cref="ValidationAttribute.IsValid(object)"/>
+        /// Override of <see cref="ValidationAttribute.Validate(object)"/>
         /// </summary>
         /// <param name="value">The value to test.</param>
         /// <returns><c>false</c> if the value is null or an empty string. If <see cref="RequiredAttribute.AllowEmptyString"/>
         /// then <c>false</c> is returned only if <paramref name="value"/> is null.</returns>
-        public override bool IsValid(object value)
+        public override bool Validate(object value)
         {
             if (value == null)
             {

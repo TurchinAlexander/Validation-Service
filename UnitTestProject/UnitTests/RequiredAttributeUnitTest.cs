@@ -15,7 +15,7 @@ namespace UnitTestProject
 
             // act
             var attr = new RequiredAttribute();
-            bool result = attr.IsValid(value);
+            bool result = attr.Validate(value);
 
             // assert
             Assert.AreEqual(false, result);
@@ -29,7 +29,7 @@ namespace UnitTestProject
 
             // act
             var attr = new RequiredAttribute();
-            bool result = attr.IsValid(value);
+            bool result = attr.Validate(value);
 
             // assert
             Assert.AreEqual(false, result);
@@ -44,7 +44,7 @@ namespace UnitTestProject
             // act
             var attr = new RequiredAttribute();
             attr.AllowEmptyString = true;
-            bool result = attr.IsValid(value);
+            bool result = attr.Validate(value);
 
             // assert
             Assert.AreEqual(true, result);
@@ -58,7 +58,7 @@ namespace UnitTestProject
 
             // act
             var attr = new RequiredAttribute();
-            bool result = attr.IsValid(value);
+            bool result = attr.Validate(value);
 
             // assert
             Assert.AreEqual(false, result);
@@ -72,7 +72,7 @@ namespace UnitTestProject
 
             // act
             var attr = new RequiredAttribute();
-            bool result = attr.IsValid(value);
+            bool result = attr.Validate(value);
 
             // assert
             Assert.AreEqual(true, result);
