@@ -1,6 +1,7 @@
 ﻿using System;
 using Validation_Service.Attributes;
 using Validation_Service.Result;
+using Validation_Service.Logger;
 using System.Reflection;
 
 namespace Validation_Service.Service
@@ -10,6 +11,18 @@ namespace Validation_Service.Service
     /// </summary>
     public class ValidationService : BaseValidationService
     {
+        /// <summary>
+        /// Utility to log validation details.
+        /// </summary>
+        private readonly ILogger logger;
+
+
+        /// <param name="logger">The utility to log validation details.</param>
+        public ValidationService(ILogger logger)
+        {
+            this.logger = logger;
+        }
+
         /// <summary>
         /// Internal logic of object validation.
         /// </summary>
@@ -38,11 +51,26 @@ namespace Validation_Service.Service
                     // SingleReport singleReport = attr.Validate(value);
                     var singleReport = attr.Validate(value);
                     fullReport += new SingleReport(singleReport.IsValid,
-                        singleReport.Details != null ? $"{fullPath}/{prop.Name} : {singleReport.Details}" : null);
+                        singleReport.Details != null ? $"{fullPath}.{prop.Name} : {singleReport.Details}" : null);
                 }
             }
 
+            WriteReport(fullReport);
+
             return fullReport;
+        }
+
+        private void WriteReport(FullReport fullReport)
+        {
+            if (fullReport != null)
+            {
+                foreach(string msg in fullReport.Details)
+                {
+                    logger.Log(msg);
+                }
+            }
         }
     }
 }
+
+
