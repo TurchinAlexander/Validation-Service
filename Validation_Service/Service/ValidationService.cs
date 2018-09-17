@@ -35,9 +35,10 @@ namespace Validation_Service.Service
 
                 foreach(ValidationAttribute attr in prop.GetCustomAttributes<ValidationAttribute>())
                 {
-                    SingleReport singleReport = attr.Validate(value);
+                    // SingleReport singleReport = attr.Validate(value);
+                    var singleReport = attr.Validate(value);
                     fullReport += new SingleReport(singleReport.IsValid,
-                        singleReport.Details != null ? $"{fullPath}.{prop} : {singleReport.Details}" : null);
+                        singleReport.Details != null ? $"{fullPath}/{prop.Name} : {singleReport.Details}" : null);
                 }
             }
 
