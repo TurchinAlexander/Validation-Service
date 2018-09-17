@@ -23,7 +23,7 @@ namespace Validation_Service.Result
         /// <param name="errorMsg">Details of validation.</param>
         public SingleReport(bool isValid, string details = null)
         {
-            this.IsValid = IsValid;
+            this.IsValid = isValid;
             this.Details = details;
         }
     }
