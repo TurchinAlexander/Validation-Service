@@ -57,7 +57,6 @@
     <Compile Include="Result\SingleReport.cs" />
     <Compile Include="Service\BaseValidationService.cs" />
     <Compile Include="Service\ValidationService.cs" />
-    <Compile Include="Validator.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

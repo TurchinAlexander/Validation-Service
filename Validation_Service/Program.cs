@@ -1,10 +1,7 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Validation_Service.Attributes;
-
+using Validation_Service.Result;
+using Validation_Service.Service;
 
 namespace Validation_Service
 {
@@ -28,10 +25,13 @@ namespace Validation_Service
         static void Main(string[] args)
         {
             var test = new Test(2, "Heeeeeeey");
-            var validator = new Validator();
+            ValidationService validator = new ValidationService();
 
-            validator.Validate(test);
-
+            FullReport fullReport =  validator.Validate(test);
+            foreach(string temp in fullReport.Details)
+            {
+                Console.WriteLine(temp);
+            }
         }
     }
 }
