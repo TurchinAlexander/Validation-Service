@@ -9,7 +9,7 @@ namespace Validation_Service.Logger
     /// <summary>
     /// Interface for interaction with Logger.
     /// </summary>
-    interface ILogger
+    public interface ILogger
     {
         /// <summary>
         /// Logging information.
