@@ -41,10 +41,10 @@ namespace Validation_Service.Attributes
                     return new SingleReport(isValid: false, this.ErrorMessage);
                 }
             }
-            else
+            /*else
             {
                 return new SingleReport(isValid: false, this.ErrorMessage);
-            }
+            }*/
 
             return new SingleReport(isValid: true);
         }
