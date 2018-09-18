@@ -1,6 +1,7 @@
 ﻿using System;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Validation_Service.Attributes;
+using Validation_Service.Result;
 
 namespace UnitTestProject
 {
@@ -15,10 +16,10 @@ namespace UnitTestProject
 
             // act
             var attr = new RequiredAttribute();
-            bool result = attr.Validate(value);
+            SingleReport result = attr.Validate(value);
 
             // assert
-            Assert.AreEqual(false, result);
+            Assert.AreEqual(false, result.IsValid);
         }
 
         [TestMethod]
@@ -29,10 +30,10 @@ namespace UnitTestProject
 
             // act
             var attr = new RequiredAttribute();
-            bool result = attr.Validate(value);
+            SingleReport result = attr.Validate(value);
 
             // assert
-            Assert.AreEqual(false, result);
+            Assert.AreEqual(false, result.IsValid);
         }
 
         [TestMethod]
@@ -44,10 +45,10 @@ namespace UnitTestProject
             // act
             var attr = new RequiredAttribute();
             attr.AllowEmptyString = true;
-            bool result = attr.Validate(value);
+            SingleReport result = attr.Validate(value);
 
             // assert
-            Assert.AreEqual(true, result);
+            Assert.AreEqual(true, result.IsValid);
         }
 
         [TestMethod]
@@ -58,10 +59,10 @@ namespace UnitTestProject
 
             // act
             var attr = new RequiredAttribute();
-            bool result = attr.Validate(value);
+            SingleReport result = attr.Validate(value);
 
             // assert
-            Assert.AreEqual(false, result);
+            Assert.AreEqual(false, result.IsValid);
         }
 
         [TestMethod]
@@ -72,10 +73,10 @@ namespace UnitTestProject
 
             // act
             var attr = new RequiredAttribute();
-            bool result = attr.Validate(value);
+            SingleReport result = attr.Validate(value);
 
             // assert
-            Assert.AreEqual(true, result);
+            Assert.AreEqual(true, result.IsValid);
         }
     }
 }
