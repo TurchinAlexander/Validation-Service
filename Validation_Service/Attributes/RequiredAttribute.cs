@@ -30,18 +30,20 @@ namespace Validation_Service.Attributes
         {
             if (value == null)
             {
-                return new SingleReport(isValid: true);
+                return new SingleReport(isValid: false, this.ErrorMessage);
             }
 
-            // Only check string length if empty string are not allowed.
-            
-            if (!AllowEmptyString)
+            var stringValue = value as string;
+            if (stringValue != null)
             {
-                var stringValue = value as string;
-                if(stringValue != null && stringValue.Trim().Length != 0)
+                if(!AllowEmptyString && stringValue.Trim().Length == 0)
                 {
                     return new SingleReport(isValid: false, this.ErrorMessage);
                 }
+            }
+            else
+            {
+                return new SingleReport(isValid: false, this.ErrorMessage);
             }
 
             return new SingleReport(isValid: true);

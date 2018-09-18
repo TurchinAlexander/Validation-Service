@@ -1,22 +1,24 @@
 ﻿using System;
+using System.Collections.Generic;
 using Validation_Service.Attributes;
 using Validation_Service.Result;
 using Validation_Service.Service;
+using Validation_Service.Logger;
 
 namespace Validation_Service
 {
     class Test
     {
         [Range(1, 4)]
-        public int Value1 { get; set; }
+        public int IntValue { get; set; }
 
-        [MinLength(5)]
-        public string Value2 { get; set; }
+        [MinLength(2)]
+        public string StringValue { get; set; }
 
         public Test(int value1, string value2)
         {
-            this.Value1 = value1;
-            this.Value2 = value2;
+            this.IntValue = value1;
+            this.StringValue = value2;
         }
     }
 
@@ -24,14 +26,12 @@ namespace Validation_Service
     {
         static void Main(string[] args)
         {
-            var test = new Test(2, "Heeeeeeey");
-            ValidationService validator = new ValidationService();
+            var test = new Test(5, "H");
+            ValidationLogger logger = new ValidationLogger();
+            ValidationService validator = new ValidationService(logger);
 
-            FullReport fullReport =  validator.Validate(test);
-            foreach(string temp in fullReport.Details)
-            {
-                Console.WriteLine(temp);
-            }
+            validator.Validate(test);
+
         }
     }
 }

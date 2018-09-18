@@ -46,9 +46,9 @@ namespace Validation_Service.Attributes
 
             bool isValid = true;
 
-            if(value == null)
+            if (value == null)
             {
-                return new SingleReport(isValid: false, this.ErrorMessage);
+                return new SingleReport(isValid: true);
             }
             else
             {
